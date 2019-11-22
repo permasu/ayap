@@ -16,9 +16,18 @@ my_list = [
     journal('Ахметшин Сергей', 'АСУ-19-1'),
     journal('Рожин Павел', 'АСУ-19-1')
 ]
-print('Список группы')
+print('Демонстрация lambda')
+printjournal=lambda x: print("ФИО: %s, группа: %r" % (x.name, x.faculty))
 for x in my_list:
-    print(x.test())
-    #print(repr(x))
-testCall=journal("ИмяТестCall","ГруппаТестCall")
-testCall()
+    printjournal(x)
+new_list= list(map(lambda x: x.name+" map",my_list))
+
+print("Демонстрация map")
+print(new_list)
+print("Демонстрация reduce// Суммирование фамилий в списке")
+from functools import reduce
+sum_all_Fio=reduce(lambda x, y: x.name+" "+y.name, my_list)
+print(sum_all_Fio)
+print("Демонстрация filter//отфильтруем элементы с имеющимся вхождением строки Ахметшин Сергей в фио")
+filt = list(filter(lambda x: x.name=='Ахметшин Сергей', my_list))
+print(filt)
